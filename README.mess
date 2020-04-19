@@ -1,0 +1,35 @@
+## About Markless-CM
+This is a mode for "CodeMirror"(https://codemirror.net/) that implements syntax highlighting for "Markless"(https://shirakumo.github.io/markless).
+
+## How To
+Include "``markless.js``"(link markless.js) and "``markless.css``"(link markless.css) files in your document. After that, you can specify ``markless`` as a mode for your CodeMirror instance. The mime-types ``text/markless`` and ``text/x-markless`` are also registered.
+
+:: html
+<link rel="stylesheet" href="codemirror.css">
+<link rel="stylesheet" href="markless.css">
+<textarea># Hey!</textarea>
+<script src="codemirror.js"></script>
+<script src="markless.js"></script>
+<script>
+  var editor = CodeMirror.fromTextArea(document.querySelector("textarea"), {
+    mode: "markless"
+  });
+</script>
+::
+
+You can also pass a configuration object to customise the mode behaviour. Specifically, you can use this to either add new directives, or remove standard ones (by setting them to ``null``). For example, to add a new inline directive you could proceed as follows:
+
+:: javascript
+{
+  inlineDirectives: {
+    variable: {
+      prefix: "\\{",
+      suffix: "\\}",
+      content: "none",
+      style: "variable"
+    }
+  }
+}
+::
+
+See the source code for more examples on directive specifications.
